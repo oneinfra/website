@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>oneinfra</title>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:100,400,800&display=swap" rel="stylesheet">
+  <link href="css/fa.min.css" rel="stylesheet">
+  <script src="js/jquery-3.4.1.min.js"></script>
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  color: #777;
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+  color: inherit;
+}
+
+#header {
+  position: fixed;
+  font-size: 6em;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: left;
+  z-index: 2;
+  padding: 0.1em;
+  -webkit-transition: font-size .4s, background .4s, box-shadow .4s;
+  -moz-transition: font-size .4s, background .4s, box-shadow .4s;
+  -o-transition: font-size .4s, background .4s, box-shadow .4s;
+  transition: font-size .4s, background .4s, box-shadow .4s;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+#header.collapsed {
+  background: linear-gradient(white, #eee);
+  font-size: 3em;
+  box-shadow: 0 0 20px 0 #333;
+}
+
+#header i {
+  -webkit-transition: opacity .1s;
+  -moz-transition: opacity .1s;
+  -o-transition: opacity .1s;
+  transition: opacity .1s;
+}
+
+#header i:hover {
+  opacity: 0.5;
+}
+
+.cover {
+  background: radial-gradient(ellipse at center, rgba(255,254,234,1) 0%, rgba(255,254,234,1) 35%, #B7E8EB 100%);
+}
+
+#kubernetes {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: -100%;
+  background: url(assets/kubernetes.svg) no-repeat;
+  background-size: auto 100%;
+  background-position: center center;
+  opacity: 0.2;
+}
+
+.parallax {
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.content {
+  overflow: hidden;
+  min-height: 100%;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.content .remark {
+  font-size: 3em;
+  padding: 2em;
+}
+
+.content .remark li {
+  margin-bottom: 0.6em;
+}
+
+.caption {
+  font-weight: 800;
+  font-size: 6em;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 30%;
+  text-align: left;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.subcaption {
+  padding-top: 1em;
+  font-size: 0.5em;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 5em;
+  text-align: left;
+  padding-top: 2em;
+}
+
+.ocean {
+  height: 5%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #015871;
+  z-index: 1;
+}
+
+.wave {
+  background: url(assets/wave.svg) repeat-x;
+  position: absolute;
+  top: -198px;
+  height: 198px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+  transform: translate3d(0, 0, 0);
+}
+
+.wave:nth-of-type(2) {
+  top: -175px;
+  animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
+  opacity: 1;
+}
+
+@keyframes wave {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: -1600px;
+  }
+}
+
+@keyframes swell {
+  0%, 100% {
+    transform: translate3d(0,-25px,0);
+  }
+  50% {
+    transform: translate3d(0,5px,0);
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #header {
+    font-size: 6em;
+  }
+
+  .caption {
+    font-size: 5em;
+  }
+
+  .content {
+    background-attachment: scroll;
+  }
+
+  .content .remark {
+    font-size: 2em;
+  }
+
+  .title {
+    font-size: 4em;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #header {
+    font-size: 5em;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .caption {
+    font-size: 3em;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .content {
+    background-attachment: scroll;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .content .remark {
+    font-size: 1em;
+  }
+
+  .title {
+    font-size: 2em;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #header {
+    font-size: 5em;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .ocean {
+    height: 1%;
+  }
+
+  .caption {
+    font-size: 3em;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .content {
+    background-attachment: scroll;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .content .remark {
+    font-size: 1em;
+  }
+
+  .title {
+    font-size: 2em;
+    padding-top: 3em;
+  }
+}
+</style>
+<script>
+$(document).ready(function() {
+  $(window).scroll(function() {
+    if ($(document).scrollTop() > 200) {
+      $("#header").addClass("collapsed");
+    } else {
+      $("#header").removeClass("collapsed");
+    }
+  });
+});
+</script>
+</head>
+<body>
+
+<div id="header">
+  <a href="https://github.com/oneinfra/oneinfra" target="_blank"><i class="fab fa-github"></i></a>
+</div>
+
+<div class="parallax content cover">
+  <div id="kubernetes"></div>
+  <div class="ocean">
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+  <div class="caption">
+    Democratize Kubernetes as a Service
+    <div class="subcaption">
+      Your Kubernetes as a Service platform.
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
